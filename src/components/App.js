@@ -1,15 +1,14 @@
-import { useState } from "react";
 import Header from "./Header";
 import Speakers from "./Speakers";
+import Layout from "./Layout";
 
-const App = () => {
-  const [theme, setTheme] = useState("light");
-  return (
-    <div className={`container-fluid ${theme}`}>
-      <Header theme={theme} />
-      <Speakers theme={theme} setTheme={setTheme} />
+const App = () => (
+  <Layout startingTheme="light">
+    <div>
+      <Header />
+      <Speakers />
     </div>
-  );
-};
+  </Layout>
+);
 
 export default App;
