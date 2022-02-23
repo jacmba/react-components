@@ -25,19 +25,24 @@ const useRequestDelay = (delayMs = 1000, initialData = []) => {
   });
 
   const updateRecord = (recordUpdated, doneCallBack) => {
+    const originalRecords = [...data];
     const newRecords = data.map((rec) =>
       rec.id === recordUpdated.id ? recordUpdated : rec
     );
 
     const delayFunction = async () => {
       try {
+        setData(newRecords);
         await delay(delayMs);
         if (doneCallBack) {
           doneCallBack();
         }
-        setData(newRecords);
       } catch (error) {
         console.log("Error thrown inside delayFunction", error);
+        if (doneCallBack) {
+          doneCallBack();
+        }
+        setData(originalRecords);
       }
     };
 
