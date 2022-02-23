@@ -1,39 +1,47 @@
 import SpeakerCard from "./Speaker";
+import ReactPlaceholder from "react-placeholder/lib";
+import useRequestDelay, { REQUEST_STATUS } from "../hooks/useRequestDelay";
 import { data } from "../../SpeakerData";
-import { useState } from "react";
 
 const SpeakersList = ({ showSessions }) => {
-  const [speakersData, setSpeakersData] = useState(data);
+  const {
+    data: speakersData,
+    requestStatus,
+    error,
+    updateRecord,
+  } = useRequestDelay(2000, data);
 
-  const onFavoriteToggle = (id) => {
-    const prevSpeaker = speakersData.find((rec) => rec.id === id);
-
-    const updSpeaker = {
-      ...prevSpeaker,
-      favorite: !prevSpeaker.favorite,
-    };
-
-    const newData = speakersData.map((rec) =>
-      rec.id === id ? updSpeaker : rec
+  if (requestStatus === REQUEST_STATUS.FAILURE) {
+    return (
+      <div className="text-danger">
+        ERROR: <b>loading Speaker Data failed {error}</b>
+      </div>
     );
-
-    setSpeakersData(newData);
-  };
+  }
 
   return (
     <div className="speakers-list p-4">
-      <div className="row">
-        {speakersData.map((speaker) => {
-          return (
-            <SpeakerCard
-              key={speaker.id}
-              speaker={speaker}
-              showSessions={showSessions}
-              onFavoriteToggle={() => onFavoriteToggle(speaker.id)}
-            />
-          );
-        })}
-      </div>
+      <ReactPlaceholder
+        type="media"
+        rows={15}
+        className="speakerslist-placeholder"
+        ready={requestStatus === REQUEST_STATUS.SUCCESS}
+      >
+        <div className="row">
+          {speakersData.map((speaker) => {
+            return (
+              <SpeakerCard
+                key={speaker.id}
+                speaker={speaker}
+                showSessions={showSessions}
+                onFavoriteToggle={() =>
+                  updateRecord({ ...speaker, favorite: !speaker.favorite })
+                }
+              />
+            );
+          })}
+        </div>
+      </ReactPlaceholder>
     </div>
   );
 };
