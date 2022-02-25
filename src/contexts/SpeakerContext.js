@@ -10,7 +10,7 @@ const SpeakerProvider = ({
   deleteRecord,
 }) => (
   <SpeakerContext.Provider
-    value={{ speaker, updateRecord, insertRecord, updateRecord }}
+    value={{ speaker, updateRecord, insertRecord, updateRecord, deleteRecord }}
   >
     {children}
   </SpeakerContext.Provider>
