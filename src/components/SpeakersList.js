@@ -11,6 +11,8 @@ const SpeakersList = () => {
     requestStatus,
     error,
     updateRecord,
+    insertRecord,
+    deleteRecord,
   } = useRequestDelay(2000, data);
 
   const { searchQuery, eventYear } = useContext(SpeakerFilterContext);
@@ -49,12 +51,9 @@ const SpeakersList = () => {
                 <SpeakerCard
                   key={speaker.id}
                   speaker={speaker}
-                  onFavoriteToggle={(doneCallBack) =>
-                    updateRecord(
-                      { ...speaker, favorite: !speaker.favorite },
-                      doneCallBack
-                    )
-                  }
+                  updateRecord={updateRecord}
+                  insertRecord={insertRecord}
+                  deleteRecord={deleteRecord}
                 />
               );
             })}
