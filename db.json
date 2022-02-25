@@ -1,5 +1,36 @@
 [
   {
+    "id": "1645812715430",
+    "first": "Espartero",
+    "bio": "Bio not entered yet",
+    "sessions": [
+      {
+        "id": "16458127143948888",
+        "title": "New Session for Espartero",
+        "room": {
+          "name": "Main Ball Room"
+        },
+        "eventYear": "2019"
+      }
+    ]
+  },
+  {
+    "id": "1645812706439",
+    "first": "Jack",
+    "last": "Sparrow",
+    "bio": "Bio not entered yet",
+    "sessions": [
+      {
+        "id": "16458127054038888",
+        "title": "New Session for Jack",
+        "room": {
+          "name": "Main Ball Room"
+        },
+        "eventYear": "2019"
+      }
+    ]
+  },
+  {
     "id": "1645798318351",
     "first": "John",
     "last": "Doe",
