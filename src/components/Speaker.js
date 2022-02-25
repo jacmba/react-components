@@ -27,13 +27,27 @@ const SessionsList = () => {
   );
 };
 
+const ImageWithFallback = ({ src, ...props }) => {
+  const [error, setError] = useState(false);
+  const [imgSrc, setImgSrc] = useState(src);
+
+  const onError = () => {
+    if (!error) {
+      setImgSrc("/images/dummy-speaker-image.jpg");
+      setError(true);
+    }
+  };
+
+  return <img src={imgSrc} {...props} onError={onError} />;
+};
+
 const SpeakerImage = () => {
   const {
     speaker: { id, first, last },
   } = useContext(SpeakerContext);
   return (
     <div className="speaker-img d-flex flex-row justify-content-center align-items-center h-300 thumbnail">
-      <img
+      <ImageWithFallback
         className="contain-fit"
         src={`/images/speaker-${id}.jpg`}
         width="300"

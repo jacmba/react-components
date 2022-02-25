@@ -1,5 +1,21 @@
 [
   {
+    "id": "1645798318351",
+    "first": "John",
+    "last": "Doe",
+    "bio": "Bio not entered yet",
+    "sessions": [
+      {
+        "id": "16457983172048888",
+        "title": "New Session for John",
+        "room": {
+          "name": "Main Ball Room"
+        },
+        "eventYear": "2019"
+      }
+    ]
+  },
+  {
     "first": "John",
     "last": "Doe",
     "company": "ACME",

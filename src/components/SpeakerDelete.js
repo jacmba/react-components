@@ -3,7 +3,6 @@ import { SpeakerContext } from "../contexts/SpeakerContext";
 
 const SpeakerDelete = () => {
   const { speaker, deleteRecord } = useContext(SpeakerContext);
-  console.log("El espiker!!", speaker);
 
   return (
     <span className="session w-100">
